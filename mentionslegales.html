@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mentions Légales — DenTerre Malgache</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          bg: '#FBFAF6',
+          ink: '#262420',
+          forest: {
+            DEFAULT: '#1D3B2E',
+            light: '#3F6652',
+            50: '#EEF3F0',
+          },
+          terracotta: {
+            DEFAULT: '#C1502C',
+            light: '#E0714C',
+          },
+          sand: '#E9E3D5',
+        },
+        fontFamily: {
+          serif: ['Fraunces', 'serif'],
+          sans: ['Inter', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; font-size: clamp(15px, 0.9vw + 11px, 17px); }
+  body { background-color: #FBFAF6; color: #262420; }
+  .fade-up { opacity: 0; transform: translateY(1.5rem); transition: opacity 0.9s cubic-bezier(.22,.61,.36,1), transform 0.9s cubic-bezier(.22,.61,.36,1); }
+  .fade-up.in-view { opacity: 1; transform: translateY(0); }
+  .stagger-1 { transition-delay: 0.08s; }
+  .stagger-2 { transition-delay: 0.16s; }
+  .stagger-3 { transition-delay: 0.24s; }
+  .stagger-4 { transition-delay: 0.32s; }
+  .card-img { transition: transform 1.1s cubic-bezier(.22,.61,.36,1); }
+  .card-wrap:hover .card-img { transform: scale(1.06); }
+  .underline-grow { position: relative; }
+  .underline-grow::after {
+    content: ''; position: absolute; left: 0; bottom: -0.125rem; width: 0; height: 1px;
+    background: currentColor; transition: width 0.4s ease;
+  }
+  .underline-grow:hover::after { width: 100%; }
+  ::selection { background: #C1502C; color: #FBFAF6; }
+  .hero-title { font-size: clamp(2.2rem, 4.5vw + 0.8rem, 4.2rem); line-height: 1.06; }
+  .section-title { font-size: clamp(1.6rem, 2.2vw + 1rem, 2.5rem); }
+  .card-photo { height: clamp(17.5rem, 34vw, 25rem); }
+  @media (prefers-reduced-motion: reduce) {
+    .fade-up { opacity: 1; transform: none; transition: none; }
+    .card-img { transition: none; }
+  }
+</style>
+</head>
+<body class="antialiased">
+
+<!-- HEADER -->
+<header class="fixed top-0 inset-x-0 z-50 bg-bg/85 backdrop-blur-md border-b border-ink/10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 h-16 sm:h-20 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2 sm:gap-3 min-w-0">
+      <img src="img/logo.png" alt="Logo DenTerre Malgache" class="h-8 w-8 sm:h-10 sm:w-10 object-contain shrink-0">
+      <span class="leading-tight truncate">
+        <span class="block font-serif text-sm sm:text-base text-forest tracking-tight">DenTerre Malgache</span>
+        <span class="block text-[0.6rem] sm:text-[0.65rem] font-sans tracking-[0.2em] uppercase text-ink/45">Mission Madagascar</span>
+      </span>
+    </a>
+    <nav class="hidden md:flex items-center gap-6 lg:gap-10 text-sm text-ink/70">
+      <a href="index.html#decouvrir" class="underline-grow">Notre mission</a>
+      <a href="index.html#nature" class="underline-grow">Notre action</a>
+      <a href="index.html#equipe" class="underline-grow">L'équipe</a>
+      <a href="#contact" class="underline-grow">Contact</a>
+    </nav>
+    <a href="#contact" class="hidden md:inline-flex items-center text-sm border border-forest text-forest px-4 lg:px-5 py-2 lg:py-2.5 rounded-full hover:bg-forest hover:text-bg transition-colors duration-300 shrink-0">
+      Faire un don ❤️
+    </a>
+    <button id="menu-btn" class="md:hidden text-ink shrink-0" aria-label="Ouvrir le menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+    </button>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden border-t border-ink/10 bg-bg px-4 sm:px-6 py-5 sm:py-6 flex flex-col gap-4 sm:gap-5 text-sm text-ink/80">
+    <a href="index.html#decouvrir">Notre mission</a>
+    <a href="index.html#nature">Notre action</a>
+    <a href="index.html#equipe">L'équipe</a>
+    <a href="#contact">Contact</a>
+    <a href="#contact" class="text-forest font-medium">Faire un don maintenant →</a>
+  </div>
+</header>
+
+<!-- CONTENU MENTIONS LÉGALES -->
+<main class="pt-32 pb-16 sm:pt-40 sm:pb-24 max-w-3xl mx-auto px-4 sm:px-6 md:px-10">
+  
+  <div class="fade-up">
+    <h1 class="font-serif hero-title text-forest mb-4">Mentions légales</h1>
+    <p class="text-ink/60 text-sm sm:text-base mb-12 sm:mb-16">Dernière mise à jour : 29/09/2026</p>
+  </div>
+
+  <div class="space-y-12 sm:space-y-16 text-ink/80 leading-relaxed">
+    
+    <!-- 1. Éditeur du site -->
+<section class="fade-up stagger-1">
+  <h2 class="font-serif text-2xl sm:text-3xl text-forest mb-5">1. Éditeur du site</h2>
+  <p class="mb-3">Le présent site est édité par l'association <strong class="text-ink font-medium">DenTerre Malgache</strong>, association loi 1901 à but non lucratif.</p>
+  <ul class="list-none space-y-2">
+    <li><span class="text-ink/50 w-32 inline-block">Siège social :</span> <strong class="text-ink font-medium">2 rue de Braga, 63100 Clermont-Ferrand, France</strong></li>
+    <li><span class="text-ink/50 w-32 inline-block">Téléphone :</span> <strong class="text-ink font-medium">+33 4 73 17 73 00.</strong></li>
+    <li><span class="text-ink/50 w-32 inline-block">Email :</span> <strong class="text-ink font-medium">[Adresse email de contact]</strong></li>
+    <li><span class="text-ink/50 w-32 inline-block">N° RNA :</span> <strong class="text-ink font-medium"> W632014661</strong></li>
+    <li><span class="text-ink/50 w-32 inline-block">N° SIRET :</span> <strong class="text-ink font-medium"> 987 531 316 00014</strong></li>
+  </ul>
+</section>
+
+    <!-- 2. Directeur de la publication -->
+    <!-- 2. Directrice de la publication -->
+<section class="fade-up stagger-2">
+
+      <h2 class="font-serif text-2xl sm:text-3xl text-forest mb-5">2. Directeur de la publication</h2>
+
+      <p>Le directeur de la publication est <strong class="text-ink font-medium">Ana COUMES</strong>, en sa qualité de <strong class="text-ink font-medium">Présidente</strong> de l'association DenTerre Malgache.</p>
+
+    </section>
+
+<!-- 3. Hébergement -->
+<section class="fade-up stagger-3">
+  <h2 class="font-serif text-2xl sm:text-3xl text-forest mb-5">3. Hébergement du site</h2>
+  <p class="mb-3">L'hébergement de ce site est assuré par <strong class="text-ink font-medium">GitHub Pages</strong>, un service fourni par GitHub, Inc.</p>
+  <ul class="list-none space-y-2">
+    <li><span class="text-ink/50 w-32 inline-block">Siège social :</span> <strong class="text-ink font-medium">88 Colin P Kelly Jr St, San Francisco, CA 94107, États-Unis</strong></li>
+    <li><span class="text-ink/50 w-32 inline-block">Téléphone :</span> <strong class="text-ink font-medium">+1 (877) 448-4820</strong></li>
+    <li><span class="text-ink/50 w-32 inline-block">Contact :</span> <a href="https://support.github.com" target="_blank" rel="noopener noreferrer" class="text-forest hover:underline font-medium">https://support.github.com</a></li>
+  </ul>
+</section>
+
+    <!-- 4. Propriété intellectuelle -->
+    <section class="fade-up stagger-4">
+      <h2 class="font-serif text-2xl sm:text-3xl text-forest mb-5">4. Propriété intellectuelle</h2>
+      <p>L'ensemble de ce site (textes, photographies, illustrations, logos) relève de la législation française et internationale sur le droit d'auteur et la propriété intellectuelle. Toute reproduction, représentation ou diffusion, en tout ou partie, du contenu de ce site sur quelque support ou par tout procédé que ce soit est interdite sans l'accord exprès de l'association DenTerre Malgache.</p>
+    </section>
+
+    <!-- 5. Données personnelles et Cookies -->
+<section class="fade-up">
+  <h2 class="font-serif text-2xl sm:text-3xl text-forest mb-5">5. Données personnelles et traceurs (cookies)</h2>
+  <p class="mb-4">Le site de l'association DenTerre Malgache est un site web statique purement informatif. Il ne comporte aucun formulaire et ne permet pas la création de comptes utilisateurs. Nous ne collectons donc aucune donnée personnelle directe.</p>
+  <p>Ce site n'utilise aucun cookie de traçage ou d'analyse publicitaire nécessitant le consentement de l'utilisateur. Aucun bandeau cookie n'est donc nécessaire.</p>
+</section>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer id="contact" class="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 py-12 sm:py-16">
+  <div class="grid md:grid-cols-12 gap-8 sm:gap-10 pb-10 sm:pb-12 border-b border-ink/10">
+  </div>
+  <div class="pt-6 sm:pt-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-ink/40 text-center sm:text-left">
+    <p>© 2026 DenTerre Malgache. - Réalisé par <a href="https://itszaaak.github.io/" target="_blank" rel="noopener noreferrer" class="hover:text-forest">Zakk</a></p>
+    <p>Association à but humanitaire 100% des dons financent les missions de terrain.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('menu-btn').addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.toggle('hidden');
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-up').forEach(el => {
+    el.classList.remove('in-view');
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DenTerre Malgache — Mission dentaire humanitaire Madagascar</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          bg: '#FBFAF6',
+          ink: '#262420',
+          forest: {
+            DEFAULT: '#1D3B2E',
+            light: '#3F6652',
+            50: '#EEF3F0',
+          },
+          terracotta: {
+            DEFAULT: '#C1502C',
+            light: '#E0714C',
+          },
+          sand: '#E9E3D5',
+        },
+        fontFamily: {
+          serif: ['Fraunces', 'serif'],
+          sans: ['Inter', 'sans-serif'],
+        },
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; font-size: clamp(15px, 0.9vw + 11px, 17px); }
+  body { background-color: #FBFAF6; color: #262420; }
+  .fade-up { opacity: 0; transform: translateY(1.5rem); transition: opacity 0.9s cubic-bezier(.22,.61,.36,1), transform 0.9s cubic-bezier(.22,.61,.36,1); }
+  .fade-up.in-view { opacity: 1; transform: translateY(0); }
+  .stagger-1 { transition-delay: 0.08s; }
+  .stagger-2 { transition-delay: 0.16s; }
+  .stagger-3 { transition-delay: 0.24s; }
+  .stagger-4 { transition-delay: 0.32s; }
+  .card-img { transition: transform 1.1s cubic-bezier(.22,.61,.36,1); }
+  .card-wrap:hover .card-img { transform: scale(1.06); }
+  .underline-grow { position: relative; }
+  .underline-grow::after {
+    content: ''; position: absolute; left: 0; bottom: -0.125rem; width: 0; height: 1px;
+    background: currentColor; transition: width 0.4s ease;
+  }
+  .underline-grow:hover::after { width: 100%; }
+  ::selection { background: #C1502C; color: #FBFAF6; }
+  .hero-title { font-size: clamp(2.2rem, 4.5vw + 0.8rem, 4.2rem); line-height: 1.06; }
+  .section-title { font-size: clamp(1.6rem, 2.2vw + 1rem, 2.5rem); }
+  .card-photo { height: clamp(17.5rem, 34vw, 25rem); }
+  @media (prefers-reduced-motion: reduce) {
+    .fade-up { opacity: 1; transform: none; transition: none; }
+    .card-img { transition: none; }
+  }
+</style>
+</head>
+<body class="antialiased">
+
+<!-- HEADER -->
+<header class="fixed top-0 inset-x-0 z-50 bg-bg/85 backdrop-blur-md border-b border-ink/10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 h-16 sm:h-20 flex items-center justify-between">
+    <a href="#" class="flex items-center gap-2 sm:gap-3 min-w-0">
+      <img src="img/logo.png" alt="Logo DenTerre Malgache" class="h-8 w-8 sm:h-10 sm:w-10 object-contain shrink-0">
+      <span class="leading-tight truncate">
+        <span class="block font-serif text-sm sm:text-base text-forest tracking-tight">DenTerre Malgache</span>
+        <span class="block text-[0.6rem] sm:text-[0.65rem] font-sans tracking-[0.2em] uppercase text-ink/45">Mission Madagascar</span>
+      </span>
+    </a>
+    <nav class="hidden md:flex items-center gap-6 lg:gap-10 text-sm text-ink/70">
+      <a href="#decouvrir" class="underline-grow">Notre mission</a>
+      <a href="#nature" class="underline-grow">Notre action</a>
+      <a href="#equipe" class="underline-grow">L'équipe</a>
+      <a href="#contact" class="underline-grow">Contact</a>
+    </nav>
+    <a href="#contact" class="hidden md:inline-flex items-center text-sm border border-forest text-forest px-4 lg:px-5 py-2 lg:py-2.5 rounded-full hover:bg-forest hover:text-bg transition-colors duration-300 shrink-0">
+      Faire un don ❤️
+    </a>
+    <button id="menu-btn" class="md:hidden text-ink shrink-0" aria-label="Ouvrir le menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+    </button>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden border-t border-ink/10 bg-bg px-4 sm:px-6 py-5 sm:py-6 flex flex-col gap-4 sm:gap-5 text-sm text-ink/80">
+    <a href="#decouvrir">Notre mission</a>
+    <a href="#nature">Notre action</a>
+    <a href="#equipe">L'équipe</a>
+    <a href="#contact">Contact</a>
+    <a href="#contact" class="text-forest font-medium">Faire un don maintenant →</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="decouvrir" class="relative pt-20 sm:pt-24 md:pt-28 pb-16 sm:pb-24 md:pb-32 max-w-7xl mx-auto px-4 sm:px-6 md:px-10">
+  <div class="grid md:grid-cols-12 gap-8 sm:gap-10 md:gap-6 items-center">
+    <div class="md:col-span-7 fade-up in-view">
+      <p class="text-xs tracking-[0.25em] uppercase text-terracotta mb-4 sm:mb-6">18°46′ S · 46°52′ E — Océan Indien</p>
+      <h1 class="hero-title font-serif text-ink">
+        Chaque sourire soigné,<br class="hidden md:block">
+        <em class="not-italic text-forest font-serif italic">une vie transformée.</em>
+      </h1>
+      <p class="mt-6 sm:mt-8 text-base md:text-lg text-ink/65 max-w-lg leading-relaxed">
+        À Madagascar, des milliers d'enfants et de familles n'ont jamais accès à des soins dentaires. Une carie non traitée peut devenir une infection grave, une douleur chronique, une scolarité interrompue. DenTerre Malgache intervient sur le terrain avec des équipes bénévoles pour soigner, prévenir et éduquer — mais chaque mission dépend de votre générosité pour exister.
+      </p>
+      <div class="mt-8 sm:mt-10 flex flex-wrap items-center gap-4 sm:gap-6">
+        <a href="#contact" class="inline-flex items-center gap-2 bg-terracotta text-bg px-6 sm:px-7 py-3 sm:py-3.5 rounded-full text-sm hover:bg-terracotta-light transition-colors duration-300">
+          Contribuer au projet
+        </a>
+        <a href="#equipe" class="text-sm text-ink/70 underline-grow">Découvrir l'équipe médicale</a>
+      </div>
+    </div>
+
+   <div class="md:col-span-5 fade-up stagger-2 in-view">
+        <div class="relative aspect-[4/5] rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden">
+
+            <img src="img/bureau.jpg" alt="Équipe de la mission dentaire DenTerre Malgache sur le terrain" class="w-full h-full object-cover">
+
+            <div class="absolute bottom-4 sm:bottom-6 left-0 right-0 flex justify-center text-bg/90 px-4">
+                <span class="text-[0.6rem] sm:text-[0.65rem] tracking-[0.2em] uppercase bg-ink/25 backdrop-blur-sm px-3 py-1.5 rounded-full text-center">Mission 2025-2026</span>
+          </div>
+
+        </div>
+    </div>
+  </div>
+</section>
+
+<!-- EN QUELQUES MOTS -->
+<section id="nature" class="border-t border-ink/10 bg-forest-50/40">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 py-14 sm:py-20 md:py-28">
+    <div class="fade-up mb-10 sm:mb-16 max-w-xl">
+      <p class="text-xs tracking-[0.25em] uppercase text-terracotta mb-3 sm:mb-4">Pourquoi votre don compte</p>
+      <h2 class="section-title font-serif text-ink leading-tight">Redonner le sourire là où les besoins sont vitaux.</h2>
+      <p class="mt-4 text-sm sm:text-base text-ink/60 leading-relaxed">À Madagascar, l'accès à un dentiste reste un luxe pour la majorité de la population rurale. Avec un don, même modeste, vous financez directement le matériel, le transport et les soins de nos équipes bénévoles.</p>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-6 sm:gap-x-10 gap-y-10 sm:gap-y-14">
+
+      <div class="fade-up stagger-1 border-t border-ink/15 pt-5 sm:pt-6">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1D3B2E" stroke-width="1.4" class="mb-4 sm:mb-5"><path d="M12 2C7 6 5 10 5 14a7 7 0 0014 0c0-4-2-8-7-12z"/><path d="M12 8v10"/></svg>
+        <h3 class="font-serif text-base sm:text-lg text-ink mb-2">Prévention et hygiène</h3>
+        <p class="text-sm text-ink/60 leading-relaxed">Grâce aux dons, nous distribuons des kits de brossage et sensibilisons les enfants des écoles à l'hygiène bucco-dentaire — un geste simple qui évite des années de souffrance.</p>
+      </div>
+
+      <div class="fade-up stagger-2 border-t border-ink/15 pt-5 sm:pt-6">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1D3B2E" stroke-width="1.4" class="mb-4 sm:mb-5"><circle cx="12" cy="8" r="4"/><path d="M6 21c0-4 3-6 6-6s6 2 6 6"/></svg>
+        <h3 class="font-serif text-base sm:text-lg text-ink mb-2">Des soins d'urgence</h3>
+        <p class="text-sm text-ink/60 leading-relaxed">Extractions, soins conservateurs, gestion de la douleur : chaque mission financée par vos dons permet de traiter des dizaines de patients qui n'auraient sinon aucun recours.</p>
+      </div>
+
+      <div class="fade-up stagger-3 border-t border-ink/15 pt-5 sm:pt-6">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1D3B2E" stroke-width="1.4" class="mb-4 sm:mb-5"><path d="M3 18l5-9 4 6 3-5 6 8"/></svg>
+        <h3 class="font-serif text-base sm:text-lg text-ink mb-2">Un terrain exigeant</h3>
+        <p class="text-sm text-ink/60 leading-relaxed">Des hautes terres aux villages isolés, nos équipes déploient des cabinets mobiles là où aucune structure de santé n'existe. Votre soutien finance ce transport essentiel.</p>
+      </div>
+
+      <div class="fade-up stagger-4 border-t border-ink/15 pt-5 sm:pt-6">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1D3B2E" stroke-width="1.4" class="mb-4 sm:mb-5"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0112 5a5.5 5.5 0 019.5 7c-2.5 4.5-9.5 9-9.5 9z"/></svg>
+        <h3 class="font-serif text-base sm:text-lg text-ink mb-2">Une reconnaissance sincère</h3>
+        <p class="text-sm text-ink/60 leading-relaxed">Chaque donateur reçoit des nouvelles directes du terrain : le fihavanana malgache, cette solidarité qui unit un village, s'étend aujourd'hui jusqu'à vous.</p>
+      </div>
+
+    </div>
+    <div class="fade-up mt-10 sm:mt-14 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 bg-bg/70 border border-ink/10 rounded-2xl p-5 sm:p-6">
+      <p class="text-sm sm:text-base text-ink/70 leading-relaxed flex-1">20€ financent un kit de prévention pour une classe entière. 50€ couvrent les soins d'urgence d'un enfant. Chaque montant compte, quelle que soit sa taille.</p>
+      <a href="#contact" class="inline-flex items-center justify-center gap-2 bg-forest text-bg px-6 py-3 rounded-full text-sm hover:bg-forest-light transition-colors duration-300 shrink-0 w-full sm:w-auto">
+        Je soutiens la mission
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPE -->
+<section id="equipe" class="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 py-14 sm:py-20 md:py-28">
+
+  <!-- En-tête de section -->
+  <div class="fade-up mb-10 sm:mb-14 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+    <div class="max-w-xl">
+      <p class="text-xs tracking-[0.25em] uppercase text-terracotta mb-3 sm:mb-4">L'équipe médicale</p>
+      <h2 class="section-title font-serif text-ink text-3xl sm:text-4xl md:text-5xl leading-tight">
+        Les bénévoles qui rendent chaque mission possible.
+      </h2>
+    </div>
+    
+  </div>
+
+  <!-- La Grille -->
+  <!-- Utilisation de gap-6 pour aérer sur mobile et gap-8 sur grand écran -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+
+  <!-- Membre 1 -->
+  <article class="card-wrap group relative flex flex-col justify-end rounded-2xl overflow-hidden aspect-[4/5] fade-up stagger-1">
+    <img src="./img/6.png" alt="A"
+         class="card-img absolute inset-0 w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-105"
+         loading="lazy">
+    <div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/30 to-transparent pointer-events-none"></div>
+    <div class="relative z-10 p-4 sm:p-8 mt-auto">
+      <p class="text-bg/80 text-xs tracking-[0.2em] uppercase mb-2">Présidente</p>
+      <h3 class="font-serif text-xl sm:text-2xl text-bg">Ana</h3>
+      <p class="text-bg/90 text-sm mt-3 line-clamp-3">
+        Fondateur de l'association. Il orchestre les missions de chirurgie d'urgence et le matériel sur place.
+      </p>
+    </div>
+  </article>
+  <article class="card-wrap group relative flex flex-col justify-end rounded-2xl overflow-hidden aspect-[4/5] fade-up stagger-1">
+    <img src="./img/10.png" alt="Etienne"
+         class="card-img absolute inset-0 w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-105"
+         loading="lazy">
+    <div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/30 to-transparent pointer-events-none"></div>
+    <div class="relative z-10 p-4 sm:p-8 mt-auto">
+      <p class="text-bg/80 text-xs tracking-[0.2em] uppercase mb-2">Vice-président</p>
+      <h3 class="font-serif text-xl sm:text-2xl text-bg">Etienne</h3>
+      <p class="text-bg/90 text-sm mt-3 line-clamp-3">
+        Fondateur de l'association. Il orchestre les missions de chirurgie d'urgence et le matériel sur place.
+      </p>
+    </div>
+  </article>
+  <article class="card-wrap group relative flex flex-col justify-end rounded-2xl overflow-hidden aspect-[4/5] fade-up stagger-1">
+    <img src="./img/4.png" alt="Jade"
+         class="card-img absolute inset-0 w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-105"
+         loading="lazy">
+    <div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/30 to-transparent pointer-events-none"></div>
+    <div class="relative z-10 p-4 sm:p-8 mt-auto">
+      <p class="text-bg/80 text-xs tracking-[0.2em] uppercase mb-2">Tresorière</p>
+      <h3 class="font-serif text-xl sm:text-2xl text-bg">Jade</h3>
+      <p class="text-bg/90 text-sm mt-3 line-clamp-3">
+        Fondateur de l'association. Il orchestre les missions de chirurgie d'urgence et le matériel sur place.
+      </p>
+    </div>
+  </article>
+  <article class="card-wrap group relative flex flex-col justify-end rounded-2xl overflow-hidden aspect-[4/5] fade-up stagger-1">
+    <img src="./img/1.png" alt="Lili"
+         class="card-img absolute inset-0 w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-105"
+         loading="lazy">
+    <div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/30 to-transparent pointer-events-none"></div>
+    <div class="relative z-10 p-4 sm:p-8 mt-auto">
+      <p class="text-bg/80 text-xs tracking-[0.2em] uppercase mb-2">Vp Communication</p>
+      <h3 class="font-serif text-xl sm:text-2xl text-bg">Lili</h3>
+      <p class="text-bg/90 text-sm mt-3 line-clamp-3">
+        Fondateur de l'association. Il orchestre les missions de chirurgie d'urgence et le matériel sur place.
+      </p>
+    </div>
+  </article>
+  <article class="card-wrap group relative flex flex-col justify-end rounded-2xl overflow-hidden aspect-[4/5] fade-up stagger-1">
+    <img src="./img/2.png" alt="Camille"
+         class="card-img absolute inset-0 w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-105"
+         loading="lazy">
+    <div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/30 to-transparent pointer-events-none"></div>
+    <div class="relative z-10 p-4 sm:p-8 mt-auto">
+      <p class="text-bg/80 text-xs tracking-[0.2em] uppercase mb-2">Vp partenariat</p>
+      <h3 class="font-serif text-xl sm:text-2xl text-bg">Camille</h3>
+      <p class="text-bg/90 text-sm mt-3 line-clamp-3">
+        Fondateur de l'association. Il orchestre les missions de chirurgie d'urgence et le matériel sur place.
+      </p>
+    </div>
+  </article>
+  <article class="card-wrap group relative flex flex-col justify-end rounded-2xl overflow-hidden aspect-[4/5] fade-up stagger-1">
+    <img src="./img/3.png" alt="Maëlle"
+         class="card-img absolute inset-0 w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-105"
+         loading="lazy">
+    <div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/30 to-transparent pointer-events-none"></div>
+    <div class="relative z-10 p-4 sm:p-8 mt-auto">
+      <p class="text-bg/80 text-xs tracking-[0.2em] uppercase mb-2">Vp pharma</p>
+      <h3 class="font-serif text-xl sm:text-2xl text-bg">Maëlle</h3>
+      <p class="text-bg/90 text-sm mt-3 line-clamp-3">
+        Fondateur de l'association. Il orchestre les missions de chirurgie d'urgence et le matériel sur place.
+      </p>
+    </div>
+  </article>
+  <article class="card-wrap group relative flex flex-col justify-end rounded-2xl overflow-hidden aspect-[4/5] fade-up stagger-1">
+    <img src="./img/5.png" alt="Florian"
+         class="card-img absolute inset-0 w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-105"
+         loading="lazy">
+    <div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/30 to-transparent pointer-events-none"></div>
+    <div class="relative z-10 p-4 sm:p-8 mt-auto">
+      <p class="text-bg/80 text-xs tracking-[0.2em] uppercase mb-2">Vp matos</p>
+      <h3 class="font-serif text-xl sm:text-2xl text-bg">Florian</h3>
+      <p class="text-bg/90 text-sm mt-3 line-clamp-3">
+        Fondateur de l'association. Il orchestre les missions de chirurgie d'urgence et le matériel sur place.
+      </p>
+    </div>
+  </article>
+  <article class="card-wrap group relative flex flex-col justify-end rounded-2xl overflow-hidden aspect-[4/5] fade-up stagger-1">
+    <img src="./img/7.png" alt="Zakkaria"
+         class="card-img absolute inset-0 w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-105"
+         loading="lazy">
+    <div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/30 to-transparent pointer-events-none"></div>
+    <div class="relative z-10 p-4 sm:p-8 mt-auto">
+      <p class="text-bg/80 text-xs tracking-[0.2em] uppercase mb-2">Vp matos</p>
+      <h3 class="font-serif text-xl sm:text-2xl text-bg">Zakkaria</h3>
+      <p class="text-bg/90 text-sm mt-3 line-clamp-3">
+        Fondateur de l'association. Il orchestre les missions de chirurgie d'urgence et le matériel sur place.
+      </p>
+    </div>
+  </article>
+  <article class="card-wrap group relative flex flex-col justify-end rounded-2xl overflow-hidden aspect-[4/5] fade-up stagger-1">
+    <img src="./img/8.png" alt="Maeva"
+         class="card-img absolute inset-0 w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-105"
+         loading="lazy">
+    <div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/30 to-transparent pointer-events-none"></div>
+    <div class="relative z-10 p-4 sm:p-8 mt-auto">
+      <p class="text-bg/80 text-xs tracking-[0.2em] uppercase mb-2">Vp animation</p>
+      <h3 class="font-serif text-xl sm:text-2xl text-bg">Maeva</h3>
+      <p class="text-bg/90 text-sm mt-3 line-clamp-3">
+        Fondateur de l'association. Il orchestre les missions de chirurgie d'urgence et le matériel sur place.
+      </p>
+    </div>
+  </article>
+  <article class="card-wrap group relative flex flex-col justify-end rounded-2xl overflow-hidden aspect-[4/5] fade-up stagger-1">
+    <img src="./img/9.png" alt="Heloise"
+         class="card-img absolute inset-0 w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-105"
+         loading="lazy">
+    <div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/30 to-transparent pointer-events-none"></div>
+    <div class="relative z-10 p-4 sm:p-8 mt-auto">
+      <p class="text-bg/80 text-xs tracking-[0.2em] uppercase mb-2">Vp partenariat</p>
+      <h3 class="font-serif text-xl sm:text-2xl text-bg">Heloise</h3>
+      <p class="text-bg/90 text-sm mt-3 line-clamp-3">
+        Fondateur de l'association. Il orchestre les missions de chirurgie d'urgence et le matériel sur place.
+      </p>
+    </div>
+  </article>
+  <article class="card-wrap group relative flex flex-col justify-end rounded-2xl overflow-hidden aspect-[4/5] fade-up stagger-1">
+    <img src="./img/11.png" alt="Marie"
+         class="card-img absolute inset-0 w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-105"
+         loading="lazy">
+    <div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/30 to-transparent pointer-events-none"></div>
+    <div class="relative z-10 p-4 sm:p-8 mt-auto">
+      <p class="text-bg/80 text-xs tracking-[0.2em] uppercase mb-2">Vp logistique</p>
+      <h3 class="font-serif text-xl sm:text-2xl text-bg">Marie</h3>
+      <p class="text-bg/90 text-sm mt-3 line-clamp-3">
+        Fondateur de l'association. Il orchestre les missions de chirurgie d'urgence et le matériel sur place.
+      </p>
+    </div>
+  </article>
+  <article class="card-wrap group relative flex flex-col justify-end rounded-2xl overflow-hidden aspect-[4/5] fade-up stagger-1">
+    <img src="./img/12.png" alt="Lina"
+         class="card-img absolute inset-0 w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-105"
+         loading="lazy">
+    <div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/30 to-transparent pointer-events-none"></div>
+    <div class="relative z-10 p-4 sm:p-8 mt-auto">
+      <p class="text-bg/80 text-xs tracking-[0.2em] uppercase mb-2">Vp logistique</p>
+      <h3 class="font-serif text-xl sm:text-2xl text-bg">Lina</h3>
+      <p class="text-bg/90 text-sm mt-3 line-clamp-3">
+        Fondateur de l'association. Il orchestre les missions de chirurgie d'urgence et le matériel sur place.
+      </p>
+    </div>
+  </article>
+
+
+  </div>
+</section>
+
+<!-- CULTURE / CTA BAND -->
+<section id="culture" class="bg-forest text-bg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 py-14 sm:py-20 md:py-28 grid md:grid-cols-12 gap-8 sm:gap-10 items-center">
+    <div class="md:col-span-8 fade-up">
+      <p class="text-xs tracking-[0.25em] uppercase text-terracotta-light mb-4 sm:mb-5">Chaque don a un visage, chaque sourire a une histoire</p>
+      <h2 class="section-title font-serif leading-tight max-w-2xl" style="font-size: clamp(1.7rem, 2.6vw + 1rem, 2.75rem);">
+        Madagascar ne se contente pas d'un regard admiratif. Elle a besoin de vos mains, de votre voix et de votre don.
+      </h2>
+      <p class="mt-5 sm:mt-6 text-bg/70 max-w-xl leading-relaxed text-sm sm:text-base">
+        Un don de 20€, 50€ ou 100€ change directement le quotidien d'un enfant malgache : une carie soignée avant l'infection, un sourire retrouvé, une douleur qui s'arrête. Que vous donniez du temps, des compétences ou un don ponctuel, vous devenez acteur de cette mission — pas simple spectateur.
+      </p>
+    </div>
+    <div class="md:col-span-4 flex md:justify-end fade-up stagger-2">
+      <a href="#contact" class="inline-flex items-center gap-2 bg-bg text-forest px-6 sm:px-7 py-3 sm:py-3.5 rounded-full text-sm hover:bg-terracotta hover:text-bg transition-colors duration-300 w-full sm:w-auto justify-center">
+        Decouvrez les produits malgaches ❤️
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact" class="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 py-12 sm:py-16">
+  <div class="grid md:grid-cols-12 gap-8 sm:gap-10 pb-10 sm:pb-12 border-b border-ink/10">
+    <div class="md:col-span-5">
+      <div class="flex items-center gap-3 mb-4">
+        <img src="img/logo.PNG" alt="Logo DenTerre Malgache" class="h-10 w-10 sm:h-12 sm:w-12 object-contain">
+        <p class="font-serif text-lg sm:text-xl text-forest leading-tight">DenTerre<br>Malgache</p>
+      </div>
+      <p class="text-sm text-ink/55 max-w-xs leading-relaxed">Une mission, un engagement : rendre les soins dentaires accessibles à Madagascar. Votre don est la ressource qui nous permet de partir, soigner et revenir.</p>
+      <a href="#contact" class="inline-flex items-center gap-2 mt-4 text-sm text-terracotta font-medium underline-grow">
+        Nous contacter
+      </a>
+    </div>
+    <div class="md:col-span-3">
+      <p class="text-xs tracking-[0.2em] uppercase text-ink/40 mb-4">Navigation</p>
+      <ul class="space-y-2.5 text-sm text-ink/65">
+        <li><a href="#decouvrir" class="underline-grow">Notre mission</a></li>
+        <li><a href="#nature" class="underline-grow">Notre action</a></li>
+        <li><a href="#equipe" class="underline-grow">L'équipe</a></li>
+        <li><a href="#culture" class="underline-grow">Faire un don</a></li>
+        <li><a href="/mentionslegales.html" class="underline-grow">Mentions légales</a></li>
+      </ul>
+    </div>
+    <div class="md:col-span-4">
+      <p class="text-xs tracking-[0.2em] uppercase text-ink/40 mb-4">Suivez la mission</p>
+      <div class="flex items-center gap-3 sm:gap-4">
+        <a href="https://www.instagram.com/denterremalgache/" aria-label="Instagram" class="w-9 h-9 rounded-full border border-ink/15 flex items-center justify-center hover:border-forest hover:text-forest transition-colors">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@DenTerreMalgache" aria-label="YouTube" class="w-9 h-9 rounded-full border border-ink/15 flex items-center justify-center hover:border-forest hover:text-forest transition-colors">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="20" height="12" rx="4"/><path d="M10 9.5l6 2.5-6 2.5z" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="#" aria-label="TikTok" class="w-9 h-9 rounded-full border border-ink/15 flex items-center justify-center hover:border-forest hover:text-forest transition-colors">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 3v10.5a3.5 3.5 0 11-3-3.46"/><path d="M14 3c.4 2.6 2 4.1 4.5 4.4"/></svg>
+        </a>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="pt-6 sm:pt-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-ink/40 text-center sm:text-left">
+    <p>© 2026 DenTerre Malgache. - Réalisé par <a href="https://itszaaak.github.io/" target="_blank" rel="noopener noreferrer" class="hover:text-forest">Zakk</a></p>
+    <p>Association à but humanitaire 100% des dons financent les missions de terrain.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('menu-btn').addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.toggle('hidden');
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-up').forEach(el => {
+    el.classList.remove('in-view');
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
